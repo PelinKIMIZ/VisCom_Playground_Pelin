@@ -1,0 +1,59 @@
+---
+title: "Playing with the Data Saurus"
+author: NAME
+format: 
+  revealjs:
+    slide-number: true
+---
+
+## Data Saurus
+
+There are 13 datasets that have the same summary statistics but very different distributions.
+This is the "dino".
+
+```{r}
+library(tidyverse)
+# install.packages("datasauRus")
+library(datasauRus)
+datasaurus_dozen |> 
+  filter(dataset == "dino")
+```
+
+## As Visual
+
+```{r}
+datasaurus_dozen |> 
+  filter(dataset == "dino") |> 
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  coord_fixed() +
+  theme_minimal()
+```
+
+## All the datasets
+
+```{r}
+datasaurus_dozen |> 
+  ggplot(aes(x = x, y = y, color = dataset)) +
+  geom_point() +
+  coord_fixed() +
+  facet_wrap(~ dataset, ncol = 5) +
+  guides(color = "none") +
+  theme_minimal()
+```
+
+## Summary statistics {.smaller}
+
+
+
+```{r}
+datasaurus_dozen |> 
+  group_by(dataset) |> 
+  summarise(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    cor_xy = cor(x, y)
+  )
+```
