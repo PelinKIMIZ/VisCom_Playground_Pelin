@@ -1,6 +1,6 @@
 ---
 title: "Playing with the Data Saurus"
-author: NAME
+author: Pelin KIMIZ
 format: 
   revealjs:
     slide-number: true
@@ -13,7 +13,7 @@ This is the "dino".
 
 ```{r}
 library(tidyverse)
-# install.packages("datasauRus")
+#install.packages("datasauRus")
 library(datasauRus)
 datasaurus_dozen |> 
   filter(dataset == "dino")
